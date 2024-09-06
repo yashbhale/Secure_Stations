@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            background-color: #c3c3ca;
+        }
+
+        .box {
+            width: 400px;
+            height: 35px;
+            display: flex;
+            margin-top: 10px;
+            margin-left: 45px;
+            border: 1px solid rgb(93, 90, 90);
+            background-color: #ffffff;
+            border-radius: 4px;
+            padding-left: 10px;
+            justify-content: center;
+        }
+
+        .login {
+            display: flex;
+            flex-direction: column;
+            border: 3px solid rgb(251, 251, 254);
+            width: 500px;
+            border-radius: 2%;
+        }
+
+        .main {
+            width: 1515px;
+            height: 710px;
+            /* background-color: pink; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heading {
+            margin-left: 170px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .submit {
+            height: 30px;
+            width: 80px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            background-color: blueviolet;
+            margin-left: 200px;
+            color: white;
+            margin-bottom: 15px;
+            border-radius: 3PX;
+        }
+
+        .password {
+            display: flex;
+            /* background-color: aqua; */
+        }
+
+        .eye {
+            margin-top: 20px;
+            margin-left: 10px;
+            text-decoration: none;
+            border: 3px solid #c3c3ca;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="login">
+            <h1 class="heading">Login</h1>
+            <form class="flex flex-col gap-4" action="/check-data" method="post">
+            <input id="username" class="box box1" type="text" placeholder="Username" name="name">
+            <div class="password">
+                <input id="pass1" class="box box3" type="password" placeholder="Password" name="pass">
+                <button class="eye" id="eyeid" onclick="togglepassword()">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
+            <button class="submit" onclick="passmatch()">Submit</button>
+        </form>
+            <p><a href="/">Register</a></p>
+        </div>
+    </div>
+
+    <script>
+        function passmatch() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let pass1 = document.getElementById("pass1").value;
+            let pass2 = document.getElementById("pass2").value;
+            var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if (username == "" || email == "" || pass1 == "" || pass2 == "") {
+                event.preventDefault();
+                alert("All fields are not filled");
+            } else {
+                if (!emailRegex.test(email)) {
+                    event.preventDefault();
+                    alert("Please enter a valid email address");
+                } else if (pass1.length < 8) {
+                    event.preventDefault();
+                    alert("Password size is too short");
+                } else if (pass1 != pass2) {
+                    event.preventDefault();
+                    alert("Passwords do not match");
+                } else alert("Sign Up successfully");
+            }
+        }
+
+        function togglepassword() {
+            let password = document.getElementById("pass1");
+
+            if (password.type === "password") {
+                password.type = "text";
+            } else if (password.type === "text") {
+                password.type = "password";
+            }
+        }
+    </script>
+</body>
+
+</html>
